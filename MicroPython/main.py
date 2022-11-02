@@ -1,21 +1,19 @@
 from machine import Pin
-from machine import PWM
-from time import sleep
+from movement import CoreXY
+import _thread
 import time
-
-from stepper import Stepper
 
 led = Pin("LED", Pin.OUT, value = 1)
 
-tmc2209 = Stepper(18, 19)
-a4988 = Stepper(17, 16)
+mv = CoreXY(0, 0);
 
-print(time.ticks_us())
+mv.G0(100, 100)
 
 #0.9: max steps/s - 20000
 #1.8: max steps/s - 10000
-while 1:
-    tmc2209.step(3200, 1, 1)
-    a4988.step(400, 1, 1)
-    sleep(0.1)
-print(time.ticks_us())
+    
+#while 1:
+    #_thread.start_new_thread(trd, ())
+    #tmc2209.step(3200, 1, 1)
+    #a4988.step(800, 0, 1.17074)
+#print(time.ticks_us())
